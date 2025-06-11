@@ -149,47 +149,4 @@ router.post("/generate-codes", adminAuth, async (req, res) => {
   }
 })
 
-// Get generated codes for a product
-router.get("/products/:productId/codes", adminAuth, async (req, res) => {
-  try {
-    const { productId } = req.params
-
-    // Verify product exists and belongs to admin
-    const product = await Product.findOne({
-      _id: productId,
-      createdBy: req.user._id,
-    })
-
-    if (!product) {
-      return res.status(404).json({ error: "Product not found" })
-    }
-
-    const codes = await ProductCode.find({ productId }).sort({ createdAt: -1 })
-
-    // Group codes by batch number
-    const codesByBatch = codes.reduce((acc, code) => {
-      if (!acc[code.batchNumber]) {
-        acc[code.batchNumber] = []
-      }
-      acc[code.batchNumber].push({
-        uniqueCode: code.uniqueCode,
-        isUsed: code.isUsed,
-        createdAt: code.createdAt,
-      })
-      return acc
-    }, {})
-
-    res.json({
-      product: {
-        id: product._id,
-        name: product.name,
-        batchSize: product.batchSize,
-      },
-      codesByBatch,
-    })
-  } catch (error) {
-    res.status(500).json({ error: error.message })
-  }
-})
-
 module.exports = router

@@ -36,27 +36,5 @@ router.get("/search/:uniqueCode", auth, async (req, res) => {
   }
 })
 
-// Mark code as used  // additional
-router.post("/use-code/:uniqueCode", auth, async (req, res) => {
-  try {
-    const { uniqueCode } = req.params
-
-    const productCode = await ProductCode.findOneAndUpdate({ uniqueCode }, { isUsed: true }, { new: true }).populate(
-      "productId",
-    )
-
-    if (!productCode) {
-      return res.status(404).json({ error: "Invalid unique code" })
-    }
-
-    res.json({
-      message: "Code marked as used",
-      uniqueCode: productCode.uniqueCode,
-      isUsed: productCode.isUsed,
-    })
-  } catch (error) {
-    res.status(500).json({ error: error.message })
-  }
-})
 
 module.exports = router
