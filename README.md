@@ -30,22 +30,24 @@ A Backend application for managing products and unique code tracking system with
 ## Project Structure
 
 \`\`\`
+```
 product-code-system/
 ├── backend/
 │   ├── routes/
 │   │   ├── admin.js
-│   │   ├── user.js
-│   │   └── auth.js
+│   │   ├── auth.js
+│   │   └── user.js
 │   ├── models/
-│   │   ├── User.js
 │   │   ├── Product.js
-│   │   └── ProductCode.js
+│   │   ├── ProductCode.js
+│   │   └── User.js
 │   ├── middleware/
 │   │   └── auth.js
-│   ├── uploads/ (for images)
+│   ├── uploads/         # for images
 │   ├── app.js
 │   └── package.json
 └── README.md
+```
 ```
 
 ## Installation & Setup
