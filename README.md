@@ -95,14 +95,9 @@ The backend server will run on \`http://localhost:5000\`
 - \`POST /api/admin/products\` - Add new product (with image upload)
 - \`GET /api/admin/products\` - Get all products
 - \`POST /api/admin/generate-codes\` - Generate unique codes for a product
-- \`GET /api/admin/products/:productId/codes\` - Get codes for a product
 
 ### User Routes
 - \`GET /api/user/search/:uniqueCode\` - Search product by unique code
-- \`POST /api/user/use-code/:uniqueCode\` - Mark code as used
-
-## Default Users
-
 
 
 ## Features Implemented
